@@ -42,6 +42,37 @@ A simple note on how people communicate inside the engineering team — especial
 - Write down decisions (in PR description, design note, or ticket) so others can follow later.
 - Reviews are normal — every engineer, junior or senior, gets comments.
 
+## Mermaid Diagram
+
+Each role appears only once. Arrows show the main communication flows.
+
+```mermaid
+flowchart TD
+    Junior["Junior Engineer"]
+    Senior["Senior Engineer / Tech Lead"]
+
+    Junior -->|"asks when stuck,\nseeks context,\nexplains original thinking"| Senior
+    Senior -->|"shares context, constraints,\ntrade-offs, explains why"| Junior
+
+    Junior -->|"sketches approach"| DesignReview["Design Review"]
+    Senior -->|"questions assumptions,\nsuggests alternatives"| DesignReview
+    DesignReview -->|"shared understanding\nof approach and risks"| Junior
+    DesignReview -->|"guidance on design"| Senior
+
+    Junior -->|"opens PR"| CodeReview["Code Review"]
+    Senior -->|"comments, asks questions,\npoints to examples"| CodeReview
+    CodeReview -->|"learns from feedback"| Junior
+    CodeReview -->|"reviews and mentors"| Senior
+
+    classDef junior fill:#e3f2fd,stroke:#1565c0
+    classDef senior fill:#f3e5f5,stroke:#4a148c
+    classDef review fill:#fff8e1,stroke:#f57f17
+
+    class Junior junior
+    class Senior senior
+    class DesignReview,CodeReview review
+```
+
 ---
 
 *Simple companion note to the organization-level information flow document.*
