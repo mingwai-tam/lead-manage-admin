@@ -54,10 +54,10 @@ In many teams (especially smaller or technical ones) there is no dedicated desig
 
 Entities appear only once. Every arrow is labeled with the information that flows.
 
-**Arrow colors:**
-- Blue: downward / primary direction (market inputs, prioritization)
-- Orange: upward / feedback (feasibility, quality, enablement)
-- Purple: bidirectional (joint strategy)
+**Arrow colors (matched to typical visual direction):**
+- **Blue**: generally downward on the page (primary inputs and prioritization)
+- **Orange**: generally upward on the page (feedback, feasibility, quality, enablement)
+- **Purple**: bidirectional (joint strategy)
 
 ```mermaid
 flowchart TD
@@ -84,24 +84,24 @@ flowchart TD
 
     Product -->|"positioning,\nlaunch readiness,\ncontext"| GTM
 
-    %% Colors by direction
-    %% 0-1: Market	o GTM	o Product (down)
+    %% Force clearer ranking with invisible edges
+    Market ~~~ GTM
+    GTM ~~~ Product
+    Product ~~~ Engineering
+    Product ~~~ QA
+
+    %% Colors — adjusted so blue tends downward, orange upward in normal render
     linkStyle 0 stroke:#1565c0,stroke-width:2px
     linkStyle 1 stroke:#1565c0,stroke-width:2px
-    %% 2: bidirectional
     linkStyle 2 stroke:#6a1b9a,stroke-width:2px
-    %% 3-4: Product 	o Engineering/QA (down)
     linkStyle 3 stroke:#1565c0,stroke-width:2px
     linkStyle 4 stroke:#1565c0,stroke-width:2px
-    %% 5-7: Engineering feedback (up)
     linkStyle 5 stroke:#e65100,stroke-width:2px
     linkStyle 6 stroke:#e65100,stroke-width:2px
     linkStyle 7 stroke:#e65100,stroke-width:2px
-    %% 8-9: QA feedback (up)
     linkStyle 8 stroke:#e65100,stroke-width:2px
     linkStyle 9 stroke:#e65100,stroke-width:2px
-    %% 10: Product 	o GTM (down / enablement context)
-    linkStyle 10 stroke:#1565c0,stroke-width:2px
+    linkStyle 10 stroke:#e65100,stroke-width:2px
 
     classDef external fill:#e1f5fe,stroke:#01579b
     classDef gtm fill:#fff3e0,stroke:#e65100
@@ -124,6 +124,7 @@ flowchart TD
 - No separate Design role is assumed. PM supplies rough UX direction; Engineering owns concrete design decisions because technical constraints surface during implementation.
 - Flows are bidirectional in practice (partnership model); arrows show primary direction of key information and are all labeled.
 - Higher-level strategy sits outside the sprint cadence; Scrum handles delivery inspection and adaptation.
+- Arrow colors aim to follow visual direction in a normal top-down render (blue downward, orange upward, purple bidirectional). Exact placement can still vary slightly by Mermaid renderer.
 
 ---
 
