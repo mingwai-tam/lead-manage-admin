@@ -4,14 +4,15 @@ Notes on typical roles, teams, and information flows in a product/engineering or
 
 Each entity appears only once in the diagram. Tech Lead is a role within Engineering (not a separate entity). Product covers both day-to-day Product Management and Product Leadership.
 
+In many teams (especially smaller or technical ones) there is no dedicated designer. The PM provides a rough sense of the desired UX; Engineering does the concrete design while building, because technical feasibility and constraints are often only clear during implementation.
+
 ## Key Roles
 
 - **Market / Customers**: Source of needs, pain points, usage signals.
 - **GTM (Sales / Marketing / Customer Success / Support)**: Collects market signals, competitive intel, feature requests; receives enablement on what was built.
-- **Product**: Owns what and why; prioritizes problems and outcomes; filters inputs; sets product strategy and portfolio allocation; partners on execution. Includes PM and product leadership.
-- **Engineering**: Builds the product; owns technical strategy, architecture, capacity, people, and delivery. Includes Engineers, Tech Lead (technical direction within the team), Engineering Manager (people & process), and Engineering Leadership (VP Eng / CTO).
+- **Product**: Owns what and why; prioritizes problems and outcomes; filters inputs; sets product strategy and portfolio allocation; partners on execution. Includes PM and product leadership. Provides rough UX intent and acceptance criteria.
+- **Engineering**: Builds the product; owns technical strategy, architecture, capacity, people, and delivery. Includes Engineers, Tech Lead (technical direction within the team), Engineering Manager (people & process), and Engineering Leadership (VP Eng / CTO). Often owns the concrete UI/interaction design because feasibility is discovered while building.
 - **QA**: Verifies stability, correctness, regression; provides quality status.
-- **Design**: User experience and interface (often part of the product trio with Product and Engineering).
 
 ## Information Flows (point form)
 
@@ -22,14 +23,13 @@ Each entity appears only once in the diagram. Tech Lead is a role within Enginee
 ### Strategy formation
 - Product ↔ Engineering: jointly form product + engineering strategy, capacity allocation (features vs platform vs debt), OKR alignment.
 
-### Execution (product trio / squad level)
-- Product → Engineering / QA / Design: prioritized problems, outcomes, acceptance criteria.
-- Engineering → Product / QA: feasibility, constraints, estimates, what was built, how it works, limitations.
+### Execution
+- Product → Engineering / QA: prioritized problems, outcomes, rough UX intent, acceptance criteria.
+- Engineering → Product / QA: feasibility, constraints, concrete design decisions, what was built, how it works, limitations.
 - QA → Product / Engineering: stability, bugs, coverage, quality status.
-- Design participates in solution shaping with Product and Engineering.
 
 ### Scrum-related loops
-- Backlog Refinement: Product + Engineering + QA clarify items, acceptance criteria, risks.
+- Backlog Refinement: Product + Engineering + QA clarify items, acceptance criteria, risks, and rough UX.
 - Sprint Planning: Product proposes Sprint Goal; Engineering + QA commit and break down work.
 - Daily Scrum: Engineering (+ QA) sync progress and blockers toward Sprint Goal.
 - Sprint Review / Demo: Engineering shows Increment to Product (+ stakeholders including GTM); inspect if it matches intent; collect feedback.
@@ -61,18 +61,16 @@ flowchart TD
     Product["Product\n(PM + Leadership)"]
     Engineering["Engineering\n(Engineers, Tech Lead, EM, Leadership)"]
     QA["QA"]
-    Design["Design"]
 
     Market -->|"needs, feedback,\ncompetitive info"| GTM
     GTM -->|"market signals,\nfeature requests,\nwin/loss"| Product
 
     Product <-->|"joint strategy,\ncapacity allocation,\nOKRs"| Engineering
 
-    Product -->|"prioritized problems,\noutcomes,\nacceptance criteria"| Engineering
+    Product -->|"prioritized problems,\noutcomes, rough UX intent,\nacceptance criteria"| Engineering
     Product -->|"requirements,\nacceptance criteria"| QA
-    Product -->|"user problems,\nflows to design"| Design
 
-    Engineering -->|"feasibility, what was built,\nhow it works, limitations"| Product
+    Engineering -->|"feasibility, concrete design,\nwhat was built, how it works,\nlimitations"| Product
     Engineering -->|"what was built,\nhow it works,\ntest areas, limitations"| QA
     Engineering -->|"enablement:\nhow to use, demos,\nlimitations"| GTM
 
@@ -80,8 +78,6 @@ flowchart TD
     QA -->|"stability, bugs,\nquality status"| Engineering
 
     Product -->|"positioning,\nlaunch readiness,\ncontext"| GTM
-    Design -->|"UX feedback,\nprototypes"| Product
-    Design -->|"interaction details"| Engineering
 
     classDef external fill:#e1f5fe,stroke:#01579b
     classDef gtm fill:#fff3e0,stroke:#e65100
@@ -91,7 +87,7 @@ flowchart TD
 
     class Market external
     class GTM gtm
-    class Product,Design product
+    class Product product
     class Engineering eng
     class QA qa
 ```
@@ -101,8 +97,8 @@ flowchart TD
 - Tech Lead is a role inside Engineering, not a separate entity.
 - Product covers both individual Product Managers and Product Leadership (VP Product / CPO).
 - Engineering covers individual Engineers, Tech Leads, Engineering Managers, and Engineering Leadership.
+- No separate Design role is assumed. PM supplies rough UX direction; Engineering owns concrete design decisions because technical constraints surface during implementation.
 - Flows are bidirectional in practice (partnership model); arrows show primary direction of key information and are all labeled.
-- Product trio typically: Product + Design + Engineering (with Tech Lead as the engineering partner).
 - Higher-level strategy sits outside the sprint cadence; Scrum handles delivery inspection and adaptation.
 
 ---
