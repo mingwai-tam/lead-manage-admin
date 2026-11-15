@@ -12,7 +12,7 @@ In many teams (especially smaller or technical ones) there is no dedicated desig
 - **Go to Market (Sales / Marketing / Customer Success / Support)**: Collects market signals, competitive intel, feature requests; receives enablement on what was built.
 - **Product**: Owns what and why; prioritizes problems and outcomes; filters inputs; sets product strategy and portfolio allocation; partners on execution. Includes Product Manager and product leadership. Provides rough UX intent and acceptance criteria.
 - **Engineering**: Builds the product; owns technical strategy, architecture, capacity, people, and delivery. Includes Engineers, Tech Lead (technical direction within the team), Engineering Manager (people & process), and Engineering Leadership (VP Eng / CTO). Often owns the concrete UI/interaction design because feasibility is discovered while building.
-- **QA**: Verifies stability, correctness, regression; provides quality status.
+- **Quality Assurance**: Verifies stability, correctness, regression; provides quality status.
 
 ## Information Flows (point form)
 
@@ -24,17 +24,17 @@ In many teams (especially smaller or technical ones) there is no dedicated desig
 - Product ↔ Engineering: jointly form product + engineering strategy, capacity allocation (features vs platform vs debt), OKR alignment.
 
 ### Execution
-- Product → Engineering / QA: prioritized problems, outcomes, rough UX intent, acceptance criteria.
-- Engineering → Product / QA: feasibility, constraints, concrete design decisions, what was built, how it works, limitations.
-- QA → Product / Engineering: stability, bugs, coverage, quality status.
+- Product → Engineering / Quality Assurance: prioritized problems, outcomes, rough UX intent, acceptance criteria.
+- Engineering → Product / Quality Assurance: feasibility, constraints, concrete design decisions, what was built, how it works, limitations.
+- Quality Assurance → Product / Engineering: stability, bugs, coverage, quality status.
 
 ### Scrum-related loops
-- Backlog Refinement: Product + Engineering + QA clarify items, acceptance criteria, risks, and rough UX.
-- Sprint Planning: Product proposes Sprint Goal; Engineering + QA commit and break down work.
-- Daily Scrum: Engineering (+ QA) sync progress and blockers toward Sprint Goal.
+- Backlog Refinement: Product + Engineering + Quality Assurance clarify items, acceptance criteria, risks, and rough UX.
+- Sprint Planning: Product proposes Sprint Goal; Engineering + Quality Assurance commit and break down work.
+- Daily Scrum: Engineering (+ Quality Assurance) sync progress and blockers toward Sprint Goal.
 - Sprint Review / Demo: Engineering shows Increment to Product (+ stakeholders including Go to Market); inspect if it matches intent; collect feedback.
-- Sprint Retrospective: Product + Engineering + QA improve process, handoffs, quality.
-- Definition of Done: shared checklist (code review, tests, QA verification, docs, Product acceptance).
+- Sprint Retrospective: Product + Engineering + Quality Assurance improve process, handoffs, quality.
+- Definition of Done: shared checklist (code review, tests, Quality Assurance verification, docs, Product acceptance).
 - Increment: potentially releasable; basis for review and enablement.
 
 ### Outside Scrum (strategic / continuous)
@@ -48,7 +48,7 @@ In many teams (especially smaller or technical ones) there is no dedicated desig
 
 ### Enablement and feedback
 - Engineering (+ Product) → Go to Market: how to use what was built, use cases, limitations, demo scripts.
-- Usage + quality data from production → back to Product, Engineering, QA for next prioritization.
+- Usage + quality data from production → back to Product, Engineering, Quality Assurance for next prioritization.
 
 ## Mermaid Diagram
 
@@ -63,10 +63,10 @@ Entities appear only once. Every arrow is labeled with the information that flow
 ```mermaid
 flowchart TD
     Market["Market / Customers"]
-    GoToMarket["Go to Market\nSales / Marketing / CS / Support"]
+    GoToMarket["Go to Market\nSales / Marketing / Customer Success / Support"]
     Product["Product\n(Product Manager + Leadership)"]
-    Engineering["Engineering\n(Engineers, Tech Lead, EM, Leadership)"]
-    QA["QA"]
+    Engineering["Engineering\n(Engineers, Tech Lead, Engineering Manager, Leadership)"]
+    QualityAssurance["Quality Assurance"]
 
     Market -->|"needs, feedback,\ncompetitive info"| GoToMarket
     GoToMarket -->|"market signals,\nfeature requests,\nwin/loss"| Product
@@ -74,14 +74,14 @@ flowchart TD
     Product <-->|"joint strategy,\ncapacity allocation,\nOKRs"| Engineering
 
     Product -->|"prioritized problems,\noutcomes, rough UX intent,\nacceptance criteria"| Engineering
-    Product -->|"requirements,\nacceptance criteria"| QA
+    Product -->|"requirements,\nacceptance criteria"| QualityAssurance
 
     Engineering -->|"feasibility, concrete design,\nwhat was built, how it works,\nlimitations"| Product
-    Engineering -->|"what was built,\nhow it works,\ntest areas, limitations"| QA
+    Engineering -->|"what was built,\nhow it works,\ntest areas, limitations"| QualityAssurance
     Engineering -->|"enablement:\nhow to use, demos,\nlimitations"| GoToMarket
 
-    QA -->|"stability, bugs,\nquality status"| Product
-    QA -->|"stability, bugs,\nquality status"| Engineering
+    QualityAssurance -->|"stability, bugs,\nquality status"| Product
+    QualityAssurance -->|"stability, bugs,\nquality status"| Engineering
 
     Product -->|"positioning,\nlaunch readiness,\ncontext"| GoToMarket
 
@@ -112,7 +112,7 @@ flowchart TD
     class GoToMarket gtm
     class Product product
     class Engineering eng
-    class QA qa
+    class QualityAssurance qa
 ```
 
 ## Notes
