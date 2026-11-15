@@ -56,7 +56,8 @@ Entities appear only once. Every arrow is labeled with the information that flow
 
 **Arrow colors:**
 - **Red**: information from the market into the company
-- **Blue**: information from the product and code (requirements, design, quality, enablement)
+- **Light blue**: soft information (prioritized problems, outcomes, rough UX intent, acceptance criteria, positioning)
+- **Blue**: hard information from the product and code (what was built, how it works, limitations, quality status, enablement)
 - **Purple**: bidirectional joint strategy
 
 ```mermaid
@@ -90,15 +91,16 @@ flowchart TD
     linkStyle 1 stroke:#c62828,stroke-width:2px
     %% 2: bidirectional strategy
     linkStyle 2 stroke:#6a1b9a,stroke-width:2px
-    %% 3-10: from product and code
-    linkStyle 3 stroke:#1565c0,stroke-width:2px
-    linkStyle 4 stroke:#1565c0,stroke-width:2px
+    %% 3,4,10: soft info (light blue)
+    linkStyle 3 stroke:#64b5f6,stroke-width:2px
+    linkStyle 4 stroke:#64b5f6,stroke-width:2px
+    linkStyle 10 stroke:#64b5f6,stroke-width:2px
+    %% 5-9: hard info (blue)
     linkStyle 5 stroke:#1565c0,stroke-width:2px
     linkStyle 6 stroke:#1565c0,stroke-width:2px
     linkStyle 7 stroke:#1565c0,stroke-width:2px
     linkStyle 8 stroke:#1565c0,stroke-width:2px
     linkStyle 9 stroke:#1565c0,stroke-width:2px
-    linkStyle 10 stroke:#1565c0,stroke-width:2px
 
     classDef external fill:#e1f5fe,stroke:#01579b
     classDef gtm fill:#fff3e0,stroke:#e65100
@@ -121,7 +123,7 @@ flowchart TD
 - No separate Design role is assumed. PM supplies rough UX direction; Engineering owns concrete design decisions because technical constraints surface during implementation.
 - Flows are bidirectional in practice (partnership model); arrows show primary direction of key information and are all labeled.
 - Higher-level strategy sits outside the sprint cadence; Scrum handles delivery inspection and adaptation.
-- Arrow colors: red = market into the company; blue = information from product and code; purple = bidirectional strategy.
+- Arrow colors: red = market into the company; light blue = soft info (problems, intent, acceptance criteria, positioning); blue = hard info (what was built, how it works, quality, enablement); purple = bidirectional strategy.
 
 ---
 
