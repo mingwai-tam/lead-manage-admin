@@ -54,6 +54,11 @@ In many teams (especially smaller or technical ones) there is no dedicated desig
 
 Entities appear only once. Every arrow is labeled with the information that flows.
 
+**Arrow colors:**
+- Blue: downward / primary direction (market inputs, prioritization)
+- Orange: upward / feedback (feasibility, quality, enablement)
+- Purple: bidirectional (joint strategy)
+
 ```mermaid
 flowchart TD
     Market["Market / Customers"]
@@ -78,6 +83,25 @@ flowchart TD
     QA -->|"stability, bugs,\nquality status"| Engineering
 
     Product -->|"positioning,\nlaunch readiness,\ncontext"| GTM
+
+    %% Colors by direction
+    %% 0-1: Market	o GTM	o Product (down)
+    linkStyle 0 stroke:#1565c0,stroke-width:2px
+    linkStyle 1 stroke:#1565c0,stroke-width:2px
+    %% 2: bidirectional
+    linkStyle 2 stroke:#6a1b9a,stroke-width:2px
+    %% 3-4: Product 	o Engineering/QA (down)
+    linkStyle 3 stroke:#1565c0,stroke-width:2px
+    linkStyle 4 stroke:#1565c0,stroke-width:2px
+    %% 5-7: Engineering feedback (up)
+    linkStyle 5 stroke:#e65100,stroke-width:2px
+    linkStyle 6 stroke:#e65100,stroke-width:2px
+    linkStyle 7 stroke:#e65100,stroke-width:2px
+    %% 8-9: QA feedback (up)
+    linkStyle 8 stroke:#e65100,stroke-width:2px
+    linkStyle 9 stroke:#e65100,stroke-width:2px
+    %% 10: Product 	o GTM (down / enablement context)
+    linkStyle 10 stroke:#1565c0,stroke-width:2px
 
     classDef external fill:#e1f5fe,stroke:#01579b
     classDef gtm fill:#fff3e0,stroke:#e65100
