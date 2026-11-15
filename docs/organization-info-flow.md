@@ -2,102 +2,86 @@
 
 Notes on typical roles, teams, and information flows in a product/engineering organization (tech company context). Combines general practices with Scrum elements and higher-level strategy.
 
-Each entity appears only once in the diagram below.
+Each entity appears only once in the diagram. Tech Lead is a role within Engineering (not a separate entity). Product covers both day-to-day Product Management and Product Leadership.
 
 ## Key Roles
 
 - **Market / Customers**: Source of needs, pain points, usage signals.
 - **GTM (Sales / Marketing / Customer Success / Support)**: Collects market signals, competitive intel, feature requests; receives enablement on what was built.
-- **Product Management (PM)**: Owns what and why; prioritizes problems and outcomes; filters inputs; partners on execution.
-- **Product Leadership (VP Product / CPO)**: Sets product portfolio strategy and capital allocation; aligns with Engineering leadership.
-- **Engineering Leadership (VP Eng / CTO)**: Owns engineering strategy (architecture, capacity, tech debt, process, people).
-- **Engineering Manager (EM)**: People management, team process, capacity, delivery health.
-- **Tech Lead**: Technical direction and architecture within the team; primary technical partner for PM.
-- **Engineers**: Build the product; provide feasibility input; hand off details of what was built.
+- **Product**: Owns what and why; prioritizes problems and outcomes; filters inputs; sets product strategy and portfolio allocation; partners on execution. Includes PM and product leadership.
+- **Engineering**: Builds the product; owns technical strategy, architecture, capacity, people, and delivery. Includes Engineers, Tech Lead (technical direction within the team), Engineering Manager (people & process), and Engineering Leadership (VP Eng / CTO).
 - **QA**: Verifies stability, correctness, regression; provides quality status.
-- **Design**: User experience and interface (often part of product trio).
+- **Design**: User experience and interface (often part of the product trio with Product and Engineering).
 
 ## Information Flows (point form)
 
 ### Market inputs
 - Market / Customers → GTM: needs, feedback, competitive info.
-- GTM → PM: market signals, feature requests, win/loss, customer pain.
+- GTM → Product: market signals, feature requests, win/loss, customer pain.
 
 ### Strategy formation
-- Product Leadership + Engineering Leadership: jointly form product + engineering strategy, capacity allocation (features vs platform vs debt).
-- Company strategy / OKRs cascade into this.
+- Product ↔ Engineering: jointly form product + engineering strategy, capacity allocation (features vs platform vs debt), OKR alignment.
 
 ### Execution (product trio / squad level)
-- PM → Engineers / Tech Lead / EM / QA / Design: prioritized problems, outcomes, acceptance criteria.
-- Engineers / Tech Lead → PM / QA: feasibility, constraints, estimates, what was built, how it works, limitations.
-- QA → PM / EM: stability, bugs, coverage, quality status.
-- Design participates in solution shaping with PM and Tech Lead.
+- Product → Engineering / QA / Design: prioritized problems, outcomes, acceptance criteria.
+- Engineering → Product / QA: feasibility, constraints, estimates, what was built, how it works, limitations.
+- QA → Product / Engineering: stability, bugs, coverage, quality status.
+- Design participates in solution shaping with Product and Engineering.
 
 ### Scrum-related loops
-- Backlog Refinement: PM + Tech Lead + Engineers + QA clarify items, acceptance criteria, risks.
-- Sprint Planning: PM proposes Sprint Goal; team (Eng + QA) commits and breaks down work.
-- Daily Scrum: Developers (incl. QA) sync progress and blockers toward Sprint Goal.
-- Sprint Review / Demo: Team shows Increment to PM (+ stakeholders including GTM); inspect if it matches intent; collect feedback.
-- Sprint Retrospective: Team (PM, Eng, QA) improves process, handoffs, quality.
-- Definition of Done: shared checklist (code review, tests, QA verification, docs, PM acceptance).
+- Backlog Refinement: Product + Engineering + QA clarify items, acceptance criteria, risks.
+- Sprint Planning: Product proposes Sprint Goal; Engineering + QA commit and break down work.
+- Daily Scrum: Engineering (+ QA) sync progress and blockers toward Sprint Goal.
+- Sprint Review / Demo: Engineering shows Increment to Product (+ stakeholders including GTM); inspect if it matches intent; collect feedback.
+- Sprint Retrospective: Product + Engineering + QA improve process, handoffs, quality.
+- Definition of Done: shared checklist (code review, tests, QA verification, docs, Product acceptance).
 - Increment: potentially releasable; basis for review and enablement.
 
 ### Outside Scrum (strategic / continuous)
 - Product discovery & research (customer interviews, competitive analysis) runs in parallel; feeds backlog.
-- Roadmap & release planning (quarterly): Product Leadership + Eng capacity.
-- Architecture & technical strategy: Eng Leadership / principal engineers; tech debt investment agreed with Product.
-- Go-to-market & enablement: after Increment accepted — positioning, demo scripts, sales collateral (PM + Eng + Product Marketing → GTM).
+- Roadmap & release planning (quarterly): Product + Engineering capacity.
+- Architecture & technical strategy: Engineering leadership; tech debt investment agreed with Product.
+- Go-to-market & enablement: after Increment accepted — positioning, demo scripts, sales collateral (Product + Engineering → GTM).
 - Metrics & outcome reviews: usage data, quality trends, revenue impact → adjust roadmap.
 - Cross-team dependencies, security/compliance, incident management, hiring.
-- Leadership alignment (VP Product ↔ VP Eng, portfolio reviews).
+- Leadership alignment within Product and Engineering, plus cross-functional portfolio reviews.
 
 ### Enablement and feedback
-- Engineers / Tech Lead (+ PM) → GTM: how to use what was built, use cases, limitations, demo scripts.
-- Usage + quality data from production → back to PM, Eng, QA for next prioritization.
+- Engineering (+ Product) → GTM: how to use what was built, use cases, limitations, demo scripts.
+- Usage + quality data from production → back to Product, Engineering, QA for next prioritization.
 
 ## Mermaid Diagram
 
-Entities appear only once. Arrows show primary information / decision flows.
+Entities appear only once. Every arrow is labeled with the information that flows.
 
 ```mermaid
 flowchart TD
     Market["Market / Customers"]
     GTM["GTM\nSales / Marketing / CS / Support"]
-    PM["Product Management"]
-    ProdLead["Product Leadership\nVP Product"]
-    EngLead["Engineering Leadership\nVP Eng"]
-    EM["Engineering Manager"]
-    TechLead["Tech Lead"]
-    Engineers["Engineers"]
+    Product["Product\n(PM + Leadership)"]
+    Engineering["Engineering\n(Engineers, Tech Lead, EM, Leadership)"]
     QA["QA"]
     Design["Design"]
 
-    Market --> GTM
-    GTM -->|"market signals,\nfeature requests"| PM
+    Market -->|"needs, feedback,\ncompetitive info"| GTM
+    GTM -->|"market signals,\nfeature requests,\nwin/loss"| Product
 
-    ProdLead <-->|"joint strategy,\ncapacity allocation"| EngLead
-    ProdLead --> PM
-    EngLead --> EM
-    EngLead --> TechLead
+    Product <-->|"joint strategy,\ncapacity allocation,\nOKRs"| Engineering
 
-    PM -->|"prioritized problems,\noutcomes, acceptance criteria"| Engineers
-    PM --> TechLead
-    PM --> EM
-    PM --> QA
-    PM --> Design
+    Product -->|"prioritized problems,\noutcomes,\nacceptance criteria"| Engineering
+    Product -->|"requirements,\nacceptance criteria"| QA
+    Product -->|"user problems,\nflows to design"| Design
 
-    Engineers -->|"feasibility, what was built,\nhow it works, limitations"| PM
-    Engineers --> QA
-    TechLead --> PM
-    TechLead --> QA
-    QA -->|"stability, bugs,\nquality status"| PM
-    QA --> EM
+    Engineering -->|"feasibility, what was built,\nhow it works, limitations"| Product
+    Engineering -->|"what was built,\nhow it works,\ntest areas, limitations"| QA
+    Engineering -->|"enablement:\nhow to use, demos,\nlimitations"| GTM
 
-    Engineers -->|"enablement:\nhow to use, demos, limitations"| GTM
-    PM -->|"positioning,\nlaunch readiness"| GTM
+    QA -->|"stability, bugs,\nquality status"| Product
+    QA -->|"stability, bugs,\nquality status"| Engineering
 
-    %% Scrum / review loops (implicit in partnership edges above)
-    %% Sprint Review feedback, Definition of Done, etc. flow through PM ↔ team edges
+    Product -->|"positioning,\nlaunch readiness,\ncontext"| GTM
+    Design -->|"UX feedback,\nprototypes"| Product
+    Design -->|"interaction details"| Engineering
 
     classDef external fill:#e1f5fe,stroke:#01579b
     classDef gtm fill:#fff3e0,stroke:#e65100
@@ -107,18 +91,19 @@ flowchart TD
 
     class Market external
     class GTM gtm
-    class PM,ProdLead product
-    class EngLead,EM,TechLead,Engineers eng
+    class Product,Design product
+    class Engineering eng
     class QA qa
-    class Design product
 ```
 
 ## Notes
 
-- Flows are bidirectional in practice (partnership model); arrows show primary direction of key information.
-- Product trio typically: PM + Design + Tech Lead (+ Engineers + QA embedded or close).
+- Tech Lead is a role inside Engineering, not a separate entity.
+- Product covers both individual Product Managers and Product Leadership (VP Product / CPO).
+- Engineering covers individual Engineers, Tech Leads, Engineering Managers, and Engineering Leadership.
+- Flows are bidirectional in practice (partnership model); arrows show primary direction of key information and are all labeled.
+- Product trio typically: Product + Design + Engineering (with Tech Lead as the engineering partner).
 - Higher-level strategy sits outside the sprint cadence; Scrum handles delivery inspection and adaptation.
-- Same entity represented once; multiple interactions shown as multiple edges from/to that single node.
 
 ---
 
